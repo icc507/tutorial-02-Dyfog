@@ -1,39 +1,44 @@
-#Árbol binario con listas
+# Problema 2  / 7 ptos x4 pruebas / 28 puntos
+# Ingreso de valores en árbol TRI-nario
+# ---------------------------------------------------------------------------------
+# Confeccione un programa que lea varios números y cree un árbol trinario con listas
+# esto es igual que el binario, pero los elementos que son iguales van en una lista
+# centro, de la forma [numero, [subarbol IZQ], [mismo NUM], [subarbol DER] ]
+# ---------------------------------------------------------------------------------
+# Ejemplo de entrada:
+#         20 30 90 90 8 5 90
+# La salida debe ser
+#         [20, [8, [5, [], [], []], [], []], [], [30, [], [], [90, [], [90, [], [90, [], [], []], []], []]]]
 
 def arbolBinario(numero):
-	return [numero, [], []]
+    return [numero, [], [], []]
 
-def insertaEnArbolBinario(arbol,numero):
-	if arbol==[]:
-		arbol+=arbolBinario(numero)
-	elif numero <= arbol[0]:
-		insertaEnArbolBinario(arbol[1],numero)
-	else:
-		insertaEnArbolBinario(arbol[2],numero)
 
-def estaEnArbolBinario(arbol,numero):
-	if arbol==[]:
-		return False
-	elif numero==arbol[0]:
-		return True	
-	elif numero<arbol[0]:
-		return estaEnArbolBinario(arbol[1],numero)
-	else:
-		return estaEnArbolBinario(arbol[2],numero)
+def insertaEnArbolBinario(arbol, numero):
+    if arbol == []:
+        arbol += arbolBinario(numero)
+    elif numero < arbol[0]:
+        insertaEnArbolBinario(arbol[1], numero)
 
-w = arbolBinario(50)
-insertaEnArbolBinario(w,100)
-insertaEnArbolBinario(w,80)
-insertaEnArbolBinario(w,22)
-insertaEnArbolBinario(w,44)
-insertaEnArbolBinario(w,104)
-insertaEnArbolBinario(w,12)
+    elif numero == arbol[0]:
+        insertaEnArbolBinario(arbol[2], numero)
 
-print("El árbol")
-print(w)
+    else:
+        insertaEnArbolBinario(arbol[3], numero)
 
-print("Caso "+str(101)+": "+str(estaEnArbolBinario(w,101)))
-print("Caso "+str(104)+": "+str(estaEnArbolBinario(w,104)))
-print("Caso "+str(22)+": "+str(estaEnArbolBinario(w,22)))
-print("Caso "+str(11)+": "+str(estaEnArbolBinario(w,11)))
-print("Caso "+str(200)+": "+str(estaEnArbolBinario(w,200)))
+t = input().split()
+lista = []
+for num in t:
+    if num.isdigit():
+        lista.append(int(num))
+    elif num.isdecimal():
+        lista.append(float(num))
+
+w = arbolBinario(lista[0])
+for i in range(1, len(lista)):
+    insertaEnArbolBinario(w, lista[i])
+
+print (w)
+
+
+
