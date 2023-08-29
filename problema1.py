@@ -17,7 +17,7 @@ for item in entrada1:
     if item.isdigit():
         t1.append(int(item))
         continue
-    if item.isdecimal():
+    elif item.isdecimal():
         t1.append(float(item))
         continue
     else:
@@ -28,7 +28,7 @@ for item in entrada2:
     if item.isdigit():
         t2.append(int(item))
         continue
-    if item.isdecimal():
+    elif item.isdecimal():
         t2.append(float(item))
         continue
     else:
