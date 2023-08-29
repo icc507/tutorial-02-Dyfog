@@ -34,5 +34,8 @@ for item in entrada2:
     else:
         t2.append(item)
 
+t1 = tuple(t1)
+t2 = tuple(t2)
+
 salida = t2 + t1 + t2
 print(salida)
